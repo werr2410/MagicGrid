@@ -7,8 +7,9 @@ namespace Grid {
         public MagicString(string Value) { this.Value = Value; }
         public MagicString(MagicString magicString) { Value = magicString.Value; Function = magicString.Function; }
 
-        public void PlayFunction() 
-            => Function != null ? Function(this, new EventMagicStringEvent(Value)) : new int();
+        public void PlayFunction() {
+            if(Function != null) Function(this, new Event.MagicStringEvent(Value));
+        }
 
         public static bool operator >(MagicString left, MagicString right)
             => left.Value.Length > right.Value.Length;
